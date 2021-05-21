@@ -1,0 +1,184 @@
+\documentclass{amsart}
+\usepackage{amsmath, amssymb}
+\usepackage{tikz-cd}
+\usepackage{mathbbol} % mathbb on greek letters
+
+% hyperref
+\usepackage[bookmarks=true, linktocpage=true,
+bookmarksnumbered=true, breaklinks=true,
+pdfstartview=FitH, hyperfigures=false,
+plainpages=false, naturalnames=true,
+colorlinks=true, pagebackref=true,
+pdfpagelabels]{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=blue,
+	filecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue
+}
+
+% Updating to MSC2020
+\makeatletter
+\@namedef{subjclassname@2020}{%
+	\textup{2020} Mathematics Subject Classification}
+\makeatother
+
+% elements
+\renewcommand{\P}{\mathcal{P}}
+\renewcommand{\O}{\mathcal{O}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\A}{\mathcal{A}s}
+\newcommand{\M}{\mathcal{M}}
+
+% sets
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Bij}{\mathfrak{Bij}}
+\newcommand{\G}{\mathfrak{G}}
+
+% categories
+\newcommand{\C}{\mathsf{C}}
+\newcommand{\Fun}{\mathsf{Fun}}
+\newcommand{\Ch}{\mathsf{Ch}}
+\newcommand{\Alg}{\mathsf{Alg}}
+\newcommand{\coAlg}{\mathsf{coAlg}}
+\newcommand{\biAlg}{\mathsf{biAlg}}
+\newcommand{\simplex}{\triangle}
+\newcommand{\cube}{\square}
+\newcommand{\Set}{\mathsf{Set}}
+\newcommand{\sSet}{\mathsf{sSet}}
+\newcommand{\cSet}{\mathsf{cSet}}
+\newcommand{\Nec}{\mathsf{Nec}}
+\newcommand{\nSet}{\mathsf{nSet}}
+\newcommand{\Mon}{\mathsf{Mon}}
+\newcommand{\smod}{\mathsf{Mod}_{\S}}
+\newcommand{\sbimod}{\mathsf{biMod}_{\S}}
+\newcommand{\operads}{\mathsf{Oper}}
+\newcommand{\props}{\mathsf{Prop}}
+
+% functors
+\DeclareMathOperator*{\tensor}{\otimes}
+\newcommand{\Y}{\mathcal{Y}}
+\newcommand{\chains}{N^{\triangle}}
+\newcommand{\cochains}{N}
+\newcommand{\cchains}{N}
+\newcommand{\ccochains}{N}
+\newcommand{\op}{\mathrm{op}}
+\DeclareMathOperator*{\colim}{colim}
+\newcommand{\cobar}{\mathbf{\Omega}}
+\newcommand{\gcobar}{\mathbb{\Omega}}
+
+% environments
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% other
+\newcommand{\anibal}[1]{\textcolor{blue}{\underline{Anibal}: #1}}
+\renewcommand{\th}{^\mathrm{th}}
+\newcommand{\bars}[1]{\vert{#1}\vert}
+
+% layout
+\setlength{\textwidth}{\paperwidth}
+\addtolength{\textwidth}{-2.5in}
+\setlength{\textheight}{\paperheight}
+\addtolength{\textheight}{-2in}
+\calclayout
+
+\begin{document}
+	\title{Progress report}
+	\author{Anibal M. Medina-Mardones}
+			
+	\vspace*{-1cm}
+	
+	\maketitle
+	
+	Report presented in \today\ as part of the application for a year extension after 9 of 12 months at MPIM.
+	All papers appearing in the references have been finished during my stay at MPIM and properly acknowledge its support.
+	In what follows I will describe the work done during this time, the projects currently being developed, and future research directions.
+	
+	\tableofcontents
+	
+	\section*{Acknowledgment}
+	Being able to daily come to the MPIM and interact with friendly mathematicians and staff has given me a sense of normalcy during the challenges posed by COVID-19 for which I am deeply grateful.
+	
+	\section{New formulas for cup-$i$ products}
+	Operations on the cohomology of spaces are important tools enhancing the descriptive power of this computable invariant. For cohomology with mod 2 coefficients, Steenrod squares are the most significant of these operations. Their effective computation relies on a cup-$i$ construction, a structure on (co)chains which is important in its own right, having connections to, among others, lattice field theory, convex geometry and higher category theory.
+	In \cite{medina2021newformulas} I present new formulas defining a cup-$i$ construction, and use them to introduce a fast algorithm for the computation of Steenrod squares on the cohomology of simplicial complexes. 
+	
+	\section{May-Steenrod operations}
+	As mentioned above, Steenrod introduced his square operations in the mod 2 cohomology of spaces, via formulas correcting homotopically the lack of commutativity of the cup product at the cochain level.
+	Abstractly, this operations reflect the homology of the symmetric group with 2 elements and are present in general $E_\infty$-algebras thanks to work by May.
+	Similarly, for $p$ a prime, there are May-Steenrod operations in mod $p$ cohomology of $E_\infty$-algebras, but no formulas were known analogue to the cup-$i$ products of Steenrod.
+	In \cite{medina2020odd} we present such formulas for simplicial and cubical sets.
+	
+	\section{The computer algebra system \texttt{ComCH}}
+	Commutativity up-to-coherent-homotopies plays a crucial role in the study of configuration spaces.
+	The topological operad of little cubes is homotopy equivalent to these spaces, and can be effectively represented in the category of chain complexes, with its compositional structure, by filtrations on the Barratt-Eccles and surjection operads.
+	I implemented these models as part of \texttt{ComCH} \cite{medina2021computer}, a computer algebra system written in \texttt{Python} for the study of commutativity up-to-coherent-homotopies, where I also implemented the novel constructions introduced in \cite{medina2020odd} related to the homology of symmetric groups.
+	
+	\section{Fourier analysis and information theory}	
+	Network representations often cannot fully account for the structural richness of complex systems spanning multiple levels of organization.
+	Recently proposed high-order information-theoretic signals are well-suited to capture synergistic phenomena that transcend pairwise interactions; however, the exponential-growth of their cardinality severely hinders their applicability.
+	In \cite{medina2021hyperharmonic}, a paper in which I am the first author, we combined methods from harmonic analysis and combinatorial topology to construct efficient representations of high-order information-theoretic signals.
+	The core of our method is the diagonalization of a discrete version of the Laplace-de Rham operator, that geometrically encodes structural properties of the system.
+	We capitalize these ideas by developing a complete workflow for the construction of hyperharmonic representations of high-order signals, which is applicable to a wide range of scenarios.
+	
+	\section{Geometric cohomology}
+	Having a geometric model of cohomology is important in String Topology, Simplectic Geometry and Quantum Field Theory among others.
+	In joint work with Greg Friedman and Dev Sinha, we provide a multiplicative model of cohomology for smooth manifolds based on manifolds with corners.
+	Additionally, for any cubulation of a smooth manifold we introduce a canonical vector field that flows the partially defined commutative product on submanifold cochains to Serre's product on cubical cochains, a product that it is commutative only up-to-coherent-homotopies but everywhere defined.
+	This work spans two papers which are expected to appear in the arXiv during the second half of 2021.
+	
+	\section{Persistence and functional analysis}
+	During the 1930's Morse developed the theory of functional topology relating the critical set of a semi-continuous functional and the topology of its sublevel sets.
+	Morse and Tompkins applied this body of work in the setting defined by Douglas' solution to Plateau's Problem, and proved with it their Unstable Minimal Surface Theorem.
+	Many of the key insights of functional topology have been rediscovered in the study of persistent homology, with the notion of q-tameness being as central to functional topology as it is to persistence theory.
+	With applications to geometry in mind, with Ulrich Bauer and Maximilian Schmahl we present a modern treatment of the relationship between local-connectivity properties of sublevel set filtrations, Morse inequalities, and the q-tameness of their associated persistence modules.
+	As a consequence of our analysis we identify a gap in the proof of the Unstable Minimal Surface Theorem of Morse and Tompkins and provide a correction.
+	This paper should be posted to the arXiv in July.
+	
+	\section{Cubical cochains and the cobar construction}
+	Building on the work of Adams, Baues (head of MPIM's topology group from 1986 to 2008) established a bridge between the combinatorics of cubical sets, the loop space of reduced simplicial sets, and the cobar construction of their chains.
+	He was able to enrich said cobar construction with a compatible coalgebra structure using the Serre diagonal of cubical sets.
+	In joint work with Manuel Rivera (to visit the MPIM during this summer) we extend this coproduct to a full $E_\infty$-coalgebra structure compatible with the monoid structure on the cobar construction. This result should appear by the end of Manuel's visit.
+	What made this result possible, is my definition of an $E_\infty$-bialgebra structure on the standard cubes, a result that will be posted to the arXiv by the end of June.
+	
+	\section{Steenrod operations in Khovanov homology}
+	Federico Cantero-Mor\'an extended the cup-$i$ formulas of \cite{medina2021newformulas} to augmented simplicial objects in the Burnside category.
+	This allowed him to define Steenrod squares for Khovanov homology of knots with mod 2 coefficients.
+	We are now working to extend the formulas of \cite{medina2020odd} for Steenrod operations with odd prime coefficients to this context.
+	We have already worked out the $p=3$ case and anticipate posting to the arXiv a next paper with this and other results in about 3 months.
+	
+	\section{Reading group on Lattice Field theory}
+	With MPIM's Luuk Stehouwer and Lukas Muller, we run a weekly discussion group focused on the relationships between combinatorial topology and topological field theory.
+	We have mostly focused on the work or Ryan Thorngren, Anton Kapustin and David Gaiotto, and given our different areas of expertise and friendly demeanor, this collaboration has been very fulfilling.
+	
+	\section{Dyer-Lashof operations}
+	Configuration space of $r$ points in $\mathbb R^n$ are central objects of study in topology related to the theories of loop spaces, deformations, and knots, to name just a few.
+	The homology of these spaces define Dyer-Lashof operations on mod $p$ homology and in joint work with Paolo Salvatore, we are working on identifying chain level representatives for these classes on models for the $E_n$-operads filtering the surjection and Barratt-Eccles operads.
+	This collaboration started when Paolo visited the MPIM and more details about this project can be found in his final report.
+	
+	\section{Permutohedral diagonal}
+	The construction of a cellular approximation to the diagonal of polytopes is a question with both combinatorial and topological interest.
+	The case of simplices was treated by Alexander and Whitney, that of cubes by Serre, and that of permutohedra by Saneblize and Umble.
+	At the chain level, coherent homotopical corrections for the lack of symmetry of these diagonals were known for simplices by work of McClure-Smith and Berger-Fresse, for cubes by my work, and for permutahedra remains an open question.
+	I am discussing this problem with MPIM' Rachael Boyd trying to understand better its connection with Coxeter groups and matroid theory.
+	
+	\section{Representation and cohomology of categories}
+	The theory of representations and cohomology of groups can be recasted in terms of (Hopf) algebras associated with the groups. Many of the results in this theory extend naturally to quivers and (small) categories but not all. In particular, some important functoriality properties are lost in all current generalizations from groups to categories.
+	I argue that to prevent this loss one should consider the $E_2$-coalgebra structure carried by the chains on the nerve of the category.
+	When the category is a group, this corresponds to considering the $E_2$-coalgebra structure on the bar construction of the group algebra.
+	This is a project I have discussed with MPIM's Jennifer August.	
+	
+	\bibliographystyle{alpha} % ieeetr
+	\bibliography{biblio}	
+\end{document}
